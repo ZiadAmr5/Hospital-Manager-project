@@ -42,9 +42,4 @@ void hospman::saveallData() {
 
 
 
-int main(){
-
-
-
-}
 

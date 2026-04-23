@@ -24,11 +24,4 @@ void patient::editMobileNumber(string newNum){
 
 }
 
-int main() {
-    
 
-
-
-
-    return 0;
-}
