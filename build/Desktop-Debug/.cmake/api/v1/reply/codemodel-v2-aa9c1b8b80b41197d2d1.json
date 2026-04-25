@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f0001dd0d16fed99e96e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "HospManagerSyst",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "HospManagerSyst::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HospManagerSyst-Debug-92834fe391c4b4f4da68.json",
+					"name" : "HospManagerSyst",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HospManagerSyst_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HospManagerSyst_autogen-Debug-503eb302793e19c6c18f.json",
+					"name" : "HospManagerSyst_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HospManagerSyst_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HospManagerSyst_autogen_timestamp_deps-Debug-09f2d9d3a34b1a9a257a.json",
+					"name" : "HospManagerSyst_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/root/HospManagerSyst/build/Desktop-Debug",
+		"source" : "/root/HospManagerSyst"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
