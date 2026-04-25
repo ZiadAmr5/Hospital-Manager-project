@@ -14,8 +14,8 @@ private:
 
 public:
     Doctor(string& Id, string& Name, string& Dep);
-    string getName();
-    string getDept();
+    string getName() const;
+    string getDept()const;
 };
 
 #endif

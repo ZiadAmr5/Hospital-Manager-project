@@ -7,9 +7,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
 
-    MainWindow w;
-    hospman Hospital;
-    Hospital.loadinitialData();
+    hospman*  Hospital= new hospman;
+    MainWindow w(Hospital);
+
+    Hospital->loadinitialData();
+
     w.show();
     return a.exec();
 }

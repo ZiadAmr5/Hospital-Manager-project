@@ -26,7 +26,7 @@ void hospman::loadinitialData()
         docFile.close();
     }
 }
-bool hospman::registerNewPatient(patient p)
+bool hospman::registerNewPatient(const patient &p)
 {
     for (const auto &existing : patients) {
         if (existing.getID() == p.getID()) {
@@ -35,6 +35,7 @@ bool hospman::registerNewPatient(patient p)
         }
     }
     patients.push_back(p);
+    cout<<"Sucess!@!@";
     return true;
 }
 
@@ -46,4 +47,9 @@ void hospman::saveallData()
     }
     outPat.close();
     cout << "All data saved to disk." << endl;
+}
+
+const vector<Doctor>&hospman:: getDoctors()
+{
+    return doctor;
 }

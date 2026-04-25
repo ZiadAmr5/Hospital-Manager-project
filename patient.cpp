@@ -4,6 +4,10 @@ using namespace std;
 #include <string>
 #include <vector>
 
+
+
+patient::patient(string Name,string ID, string MOBnumber): name(Name),nationalid(ID),mobilenumber(MOBnumber){}
+
 void patient::editMobileNumber(string newNum)
 {
     string inputnumber;

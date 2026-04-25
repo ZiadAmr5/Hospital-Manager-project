@@ -17,7 +17,8 @@ private:
 public:
     void loadinitialData();
     void saveallData();
-    bool registerNewPatient(patient p);
+    bool registerNewPatient(const patient &p);
+    const vector<Doctor>& getDoctors();
     patient *findPatient(string id);
 };
 
