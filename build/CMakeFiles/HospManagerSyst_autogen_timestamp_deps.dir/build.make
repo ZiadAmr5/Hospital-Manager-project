@@ -67,9 +67,9 @@ include CMakeFiles/HospManagerSyst_autogen_timestamp_deps.dir/compiler_depend.ma
 include CMakeFiles/HospManagerSyst_autogen_timestamp_deps.dir/progress.make
 
 CMakeFiles/HospManagerSyst_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.4.2
-CMakeFiles/HospManagerSyst_autogen_timestamp_deps: /usr/lib/qt6/libexec/uic
 CMakeFiles/HospManagerSyst_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 CMakeFiles/HospManagerSyst_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
+CMakeFiles/HospManagerSyst_autogen_timestamp_deps: /usr/lib/qt6/libexec/uic
 
 HospManagerSyst_autogen_timestamp_deps: CMakeFiles/HospManagerSyst_autogen_timestamp_deps
 HospManagerSyst_autogen_timestamp_deps: CMakeFiles/HospManagerSyst_autogen_timestamp_deps.dir/build.make
