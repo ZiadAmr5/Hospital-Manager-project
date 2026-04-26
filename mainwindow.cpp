@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::onRegisterClick()
 {
-    QString name = ui->nameEdit->text();
+    QString name = ui->NameEdit->text();
     QString Id = ui->IdEdit->text();
     QString number = ui->NumberEdit->text();
 

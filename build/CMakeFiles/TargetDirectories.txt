@@ -1,0 +1,9 @@
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/HospManagerSyst.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/edit_cache.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/rebuild_cache.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/list_install_components.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/install.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/install/local.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/install/strip.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/HospManagerSyst_autogen_timestamp_deps.dir
+/home/samoura/mvd/Hospital-Manager-project/build/CMakeFiles/HospManagerSyst_autogen.dir

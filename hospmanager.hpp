@@ -19,6 +19,7 @@ public:
     vector<Appointment> appointments;
     const vector<Appointment>& getSlots();
     patient *findPatient(string id);
+    bool bookAppointment(int slotIndex, string pID, string &errorMsg);
 private:
     vector<Doctor> doctor;
     vector<patient> patients;

@@ -12,18 +12,21 @@ class Appointment
     QTime time;
     bool Booked;
 
-
 public:
-    Appointment(string docID,QDate d,QTime t);
-    string getD_ID()const {return doctorID; }
-    string getDay()const {return paitentID;}
-    QDate getTime()const {return date;}
-    QTime getTime() const {return time; }
-    bool checkStatus() const {return booked;}
-    void setBooked(string pID){
-        booked = true;
-        patientID = pID;
+    Appointment(string docID, QDate d, QTime t) 
+        : doctorID(docID), date(d), time(t), Booked(false) {}
+
+    string getD_ID() const { return doctorID; }
+    string getP_ID() const { return PaitentID; }
+    
+    QDate getDate() const { return date; }
+    QTime getTime() const { return time; }
+    
+    bool checkStatus() const { return Booked; }
+    
+    void setBooked(string pID) {
+        Booked = true;
+        PaitentID = pID;
     }
 };
-
 #endif // APPOINTMENT_H

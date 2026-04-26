@@ -4,6 +4,7 @@
 #include <vector>
 #include <sstream>
 #include <QDateTime>
+#include <algorithm> 
 using namespace std;
 void hospman::loadinitialData()
 {
@@ -87,6 +88,7 @@ bool hospman::bookAppointment(int slotIndex, string pID, string &errorMsg)
     }
 
     app.setBooked(pID);
+    saveallData(); // Save changes after booking
     return true;
 }
 
@@ -108,4 +110,13 @@ void hospman::saveallData()
         outPat << p.getID() << "," << p.getName() << "," << p.getMobile() << endl;
     }
     outPat.close();
+}
+
+// Added these missing definitions to fix the linker error
+const vector<Doctor>& hospman::getDoctors() {
+    return doctor;
+}
+
+const vector<Appointment>& hospman::getSlots() {
+    return appointments;
 }

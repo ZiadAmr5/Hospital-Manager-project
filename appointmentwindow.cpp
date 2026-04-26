@@ -4,48 +4,20 @@
 #include <QDebug>
 #include <QLineEdit>
 #include <string>
+#include <QMessageBox>
 using namespace std;
-AppointmentWindow::AppointmentWindow(hospman *hos, QWidget *parent)
+AppointmentWindow::AppointmentWindow(hospman *hos, std::string patientID, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AppointmentWindow)
     , M_hosp(hos)
+    , m_patientID(patientID)
 {
     ui->setupUi(this);
-
-    // Get doctors from the manager
-    const auto &doctors = M_hosp->getDoctors();
-    const auto &slot = M_hosp->getSlots();
-
-   // ui->DocTable->setRowCount(doctors.size());
-    ui->DocTable->setRowCount(slot.size());
-    qDebug()<<"slot size is: "<<slot.size();
-    ui->DocTable->setColumnCount(6); // this controls the number of colm.
-    for(int i=0;i<slot.size();i++)
-    {
-        const string current_ID= slot[i].getD_ID();
-        string c_Name = "unknown";
-        string c_Dept= "no department";
-        for(const auto& d:doctors)
-        {
-            if(d.getID()==current_ID)
-            {
-                c_Name =d.getName();
-                c_Dept = d.getDept();
-                break;
-            }
-        }
-        ui->DocTable->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(c_Name)));
-        ui->DocTable->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(current_ID)));
-        ui->DocTable->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(c_Dept)));
-        ui->DocTable->setItem(i, 3, new QTableWidgetItem(QString::fromStdString(slot[i].getDay())));
-        ui->DocTable->setItem(i,4,new QTableWidgetItem(QString::fromStdString(slot[i].getTime())));
-    }
-
-    ui->DocTable->setSelectionBehavior(QAbstractItemView::SelectRows);
-
-    ui->DocTable->setSelectionMode(QAbstractItemView::SingleSelection);
-
-
+    ui->DocTable->setColumnCount(6);
+    QStringList headers;
+    headers << "Doctor Name" << "ID" << "Department" << "Date" << "Time" << "Status";
+    ui->DocTable->setHorizontalHeaderLabels(headers);
+    UpdateTable("");
 }
 
 AppointmentWindow::~AppointmentWindow()
@@ -53,55 +25,56 @@ AppointmentWindow::~AppointmentWindow()
     delete ui;
 }
 
-void AppointmentWindow::on_SearchEdit_textChanged(const QString &arg1)
+void AppointmentWindow::UpdateTable(std::string Filter)
 {
-    string TexttoSearch = arg1.toLower().toStdString(); //converts the search test to lower case and then to standard string
-    UpdateTable(TexttoSearch);
-}
-void AppointmentWindow::UpdateTable(string Filter) //rows go to zero then to the number containing the search
-{
+    ui->DocTable->setRowCount(0);
     const auto &doctors = M_hosp->getDoctors();
-    const auto &slot = M_hosp->getSlots();
+    const auto &allSlots = M_hosp->getSlots(); // Renamed from 'slots'
 
-    ui->DocTable->setRowCount(0); //this makes the rows "dissappear"
-    for(int i=0;i<slot.size();i++)
-    {
-        const string current_ID= slot[i].getD_ID();
-        string c_Name = "unknown";
-        string c_Dept= "no department";
-        for(const auto& d:doctors)
-        {
-            if(d.getID()==current_ID)
-            {
-                c_Name =d.getName();
+    for (int i = 0; i < (int)allSlots.size(); i++) {
+        std::string c_Name = "Unknown";
+        std::string c_Dept = "No Dept";
+
+        for (const auto &d : doctors) {
+            if (d.getID() == allSlots[i].getD_ID()) {
+                c_Name = d.getName();
                 c_Dept = d.getDept();
                 break;
             }
         }
-        string lowName = c_Name;  //variables for lower case
-        string lowDep =c_Dept;
-        for(auto& cs: lowName) //cs is short for case. we convert the strings from the csv file itself to lower case, so that the search text and the file text have a match
-        {
-            cs = tolower(cs);
-        }
-        for(auto& cs:lowDep)
-        {
-            cs= tolower(cs);
-        }
-        if(Filter.empty()||lowName.find(Filter)!=string::npos||lowDep.find(Filter)!=string::npos)
-        {
-            int row= ui->DocTable->rowCount(); // takes current row
+
+        std::string searchTarget = c_Name + " " + c_Dept;
+        for(auto &c : searchTarget) c = tolower(c);
+        std::string lowFilter = Filter;
+        for(auto &c : lowFilter) c = tolower(c);
+
+        if (Filter.empty() || searchTarget.find(lowFilter) != std::string::npos) {
+            int row = ui->DocTable->rowCount();
             ui->DocTable->insertRow(row);
-
             ui->DocTable->setItem(row, 0, new QTableWidgetItem(QString::fromStdString(c_Name)));
-            ui->DocTable->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(current_ID)));
+            ui->DocTable->setItem(row, 1, new QTableWidgetItem(QString::fromStdString(allSlots[i].getD_ID())));
             ui->DocTable->setItem(row, 2, new QTableWidgetItem(QString::fromStdString(c_Dept)));
-            ui->DocTable->setItem(row, 3, new QTableWidgetItem(QString::fromStdString(slot[i].getDay())));
-            ui->DocTable->setItem(row,4,new QTableWidgetItem(QString::fromStdString(slot[i].getTime())));
+            ui->DocTable->setItem(row, 3, new QTableWidgetItem(allSlots[i].getDate().toString("yyyy-MM-dd")));
+            ui->DocTable->setItem(row, 4, new QTableWidgetItem(allSlots[i].getTime().toString("HH:mm")));
+
+            std::string status = allSlots[i].checkStatus() ? "Booked (" + allSlots[i].getP_ID() + ")" : "Available";
+            ui->DocTable->setItem(row, 5, new QTableWidgetItem(QString::fromStdString(status)));
         }
-
-
     }
-
 }
 
+void AppointmentWindow::on_SearchEdit_textChanged(const QString &arg1)
+{
+    UpdateTable(arg1.toStdString());
+}
+
+void AppointmentWindow::on_DocTable_cellDoubleClicked(int row, int column)
+{
+    std::string errorMsg;
+    if (M_hosp->bookAppointment(row, m_patientID, errorMsg)) {
+        QMessageBox::information(this, "Success", "Appointment booked successfully!");
+        UpdateTable(ui->SearchEdit->text().toStdString());
+    } else {
+        QMessageBox::warning(this, "Booking Failed", QString::fromStdString(errorMsg));
+    }
+}

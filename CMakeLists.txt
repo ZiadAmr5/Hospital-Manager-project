@@ -13,19 +13,21 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
-        main.cpp
+main.cpp
         mainwindow.cpp
         mainwindow.h
-        mainwindow.ui   
-doctor.hpp
-doctor.cpp 
-patient.cpp
-patient.hpp
-hospmanager.cpp
-hospmanager.hpp
- appoitment.h
-        appoitment.cpp
-
+        mainwindow.ui
+        appointmentwindow.cpp
+        appointmentwindow.h
+        appointmentwindow.ui   
+        doctor.hpp
+        doctor.cpp 
+        patient.cpp
+        patient.hpp
+        hospmanager.cpp
+        hospmanager.hpp
+        appointment.h
+        appointment.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

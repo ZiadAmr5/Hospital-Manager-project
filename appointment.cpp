@@ -1,5 +1,5 @@
 #include "appointment.h"
-
+/*
 Appointment::Appointment(string docID,string d,string Sol):doctorID(docID),day(d),Slot(Sol),Booked(false){}
 
 
@@ -21,4 +21,4 @@ string Appointment::getD_ID()const
 bool Appointment::checkStatus()
 {
     return Booked;
-}
+}*/
