@@ -1,9 +1,10 @@
 #include "doctor.hpp"
 
-
-
-
-Doctor::Doctor(string &Id, string &Name, string &Dep): id(Id),name(Name),department(Dep){}
+Doctor::Doctor(string &Id, string &Name, string &Dep)
+    : id(Id)
+    , name(Name)
+    , department(Dep)
+{}
 
 string Doctor::getName() const
 {
@@ -13,4 +14,8 @@ string Doctor::getName() const
 string Doctor::getDept() const
 {
     return department;
+}
+string Doctor::getID() const
+{
+    return id;
 }

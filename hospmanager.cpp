@@ -2,29 +2,52 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 using namespace std;
 
 void hospman::loadinitialData()
 {
     ifstream docFile("doctors.csv");
-    string name, id, dept, header;
+    ifstream avfile("availability.csv");
+    string line,header;
 
-    if(!docFile.is_open())
+    if (!docFile.is_open()||!avfile.is_open())
     {
-        cout<<"File did not open!";
+        cout << "One of the Files did not open!";
         return;
     }
-    if (docFile.is_open()) {
+
         getline(docFile, header);
 
-        while (getline(docFile, name, ',') && getline(docFile, id, ',') && getline(docFile, dept))
+    while (getline(docFile,line))
         {
-            cout<<id<<endl;
-            doctor.push_back(Doctor(id, name, dept));
+            stringstream Docss(line);   //string stream treats strings as if they were on the input output stream,  useful to divide strings
+          string name ,id, dept;
+            getline(Docss,name,',');
+          getline(Docss,id,',');
+                getline(Docss,dept);
 
+            doctor.push_back(Doctor(id, name, dept));
         }
         docFile.close();
-    }
+
+        getline(avfile,header);
+
+        while(getline(avfile,line))
+        {
+            stringstream AVss(line);
+            string id,day,start,end;
+            getline(AVss,id,',');
+            getline(AVss,day,',');
+            getline(AVss,start,',');
+            getline(AVss,end,',');
+            string timeRange = start+"-"+end;
+            appointments.push_back(Appointment(id,day,timeRange));
+        }
+        avfile.close();
+
+
+
 }
 bool hospman::registerNewPatient(const patient &p)
 {
@@ -35,7 +58,7 @@ bool hospman::registerNewPatient(const patient &p)
         }
     }
     patients.push_back(p);
-    cout<<"Sucess!@!@";
+    cout << "Sucess!@!@";
     return true;
 }
 
@@ -49,7 +72,11 @@ void hospman::saveallData()
     cout << "All data saved to disk." << endl;
 }
 
-const vector<Doctor>&hospman:: getDoctors()
+const vector<Doctor> &hospman::getDoctors()
 {
     return doctor;
+}
+const vector<Appointment> &hospman::getSlots()
+{
+    return appointments;
 }
