@@ -4,9 +4,11 @@ using namespace std;
 #include <string>
 #include <vector>
 
-
-
-patient::patient(string Name,string ID, string MOBnumber): name(Name),nationalid(ID),mobilenumber(MOBnumber){}
+patient::patient(string Name, string ID, string MOBnumber)
+    : name(Name)
+    , nationalid(ID)
+    , mobilenumber(MOBnumber)
+{}
 
 void patient::editMobileNumber(string newNum)
 {
@@ -24,7 +26,7 @@ void patient::editMobileNumber(string newNum)
         }
     } while (inputnumber != mobilenumber);
 }
- string patient::getID() const
+string patient::getID() const
 {
     return nationalid;
 }

@@ -1,0 +1,4 @@
+# Hashes of file build rules.
+e6676fb0c185e7bdfdbf7006ef65fb09 CMakeFiles/HospManagerSyst_autogen
+e6676fb0c185e7bdfdbf7006ef65fb09 CMakeFiles/HospManagerSyst_autogen_timestamp_deps
+b398167dc945552cd3767e6ab092b8ab HospManagerSyst_autogen/timestamp

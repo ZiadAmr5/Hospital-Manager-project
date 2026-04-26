@@ -15,9 +15,9 @@ private:
     string mobilenumber;
 
 public:
-    patient(string Name,string ID, string MOBnumber);
+    patient(string Name, string ID, string MOBnumber);
     void editMobileNumber(string newNum);
-    string getID()const;
+    string getID() const;
     string getName();
     string getMobile();
 };

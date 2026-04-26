@@ -14,12 +14,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(hospman* h,QWidget *parent = nullptr);
+    MainWindow(hospman *h, QWidget *parent = nullptr);
     void onRegisterClick();
     ~MainWindow();
 
 private:
     Ui::MainWindow *ui;
-    hospman* m_hosp;
+    hospman *m_hosp;
 };
 #endif // MAINWINDOW_H

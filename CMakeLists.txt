@@ -23,9 +23,11 @@ patient.cpp
 patient.hpp
 hospmanager.cpp
 hospmanager.hpp
- appoitment.h
-        appoitment.cpp
-
+appointment.h
+appointment.cpp
+appointmentwindow.cpp
+appointmentwindow.h
+appointmentwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
